@@ -1,0 +1,220 @@
+.about {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+    .about {
+        max-width: 668px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .about {
+        max-width: 284px;
+    }
+}
+
+
+.about__heading {
+    color: #FFF;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.88px;
+    margin: 110px 0 23px;
+}
+
+@media screen and (max-width: 768px) {
+    .about__heading {
+        margin-top: 90px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .about__heading {
+        margin-top: 70px;
+        font-size: 18px;
+        letter-spacing: -0.72px;
+    }
+}
+
+
+.about__texts {
+    border-top: 1px solid #dadada;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 550px);
+    column-gap: 40px;
+
+}
+
+@media screen and (max-width: 768px) {
+    .about__texts {
+        grid-template-columns: repeat(auto-fit, 319px);
+        column-gap: 30px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .about__texts {
+        grid-template-columns: repeat(auto-fit, 284px);
+    }
+}
+
+.about__text-block {
+    margin: 70px 0 110px;
+    max-width: 550px;
+}
+
+@media screen and (max-width: 768px) {
+    .about__text-block {
+        margin: 70px auto 93px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .about__text-block {
+        margin: 56px auto 0;
+    }
+
+    .about__text-block:first-child {
+        margin-top: 60px;
+    }
+}
+
+
+.about__main-text {
+    color: #FFF;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.8px;
+    margin: 0 0 26px;
+    min-height: 24px;
+}
+
+@media screen and (max-width: 768px) {
+    .about__main-text {
+        margin-bottom: 22px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .about__main-text {
+        font-size: 18px;
+        letter-spacing: -0.72px;
+        margin-bottom: 16px;
+    }
+}
+
+.about__extra-text {
+    color: #FFF;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    min-height: 40px;
+    margin: 0
+}
+
+@media screen and (max-width: 768px) {
+    .about__extra-text {
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .about__extra-text {
+        font-size: 11px;
+        line-height: 16px;
+    }
+}
+
+.about__graphic {
+    max-width: 1140px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 228px 1fr;
+    margin-bottom: 110px;
+}
+
+@media screen and (max-width: 768px) {
+    .about__graphic {
+        margin-bottom: 90px;
+        grid-template-columns: 228px 1fr;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .about__graphic {
+        margin: 60px 0 70px;
+        grid-template-columns: 100px 1fr;
+    }
+}
+
+
+.about__graphic-backend {
+    max-width: 228px;
+    min-height: 36px;
+    background: #3DDC84;
+    color: #000;
+    text-align: center;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 100%;
+    align-items: center;
+    display: grid;
+}
+
+@media screen and (max-width: 350px) {
+    .about__graphic-backend {
+        font-size: 11px;
+    }
+}
+
+
+.about__graphic-frontend {
+    max-width: 912px;
+    min-height: 36px;
+    background: #303030;
+    color: #FFF;
+    text-align: center;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 100%;
+    align-items: center;
+    display: grid;
+}
+
+@media screen and (max-width: 350px) {
+    .about__graphic-frontend {
+        font-size: 11px;
+    }
+}
+
+.about__graphic-text {
+    text-align: center;
+    color: #8B8B8B;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+    margin: 14px 0 0;
+}
+
+@media screen and (max-width: 350px) {
+    .about__graphic-text {
+        font-size: 11px;
+    }
+}

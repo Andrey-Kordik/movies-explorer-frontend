@@ -1,0 +1,157 @@
+.movie {
+    cursor: pointer;
+    max-width: 360px;
+    width: 100%;
+    position: relative;
+}
+
+@media screen and (max-width: 768px) {
+    .movie  {
+        max-width: 339px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .movie  {
+        max-width: 300px;
+    }
+}
+
+
+.movie__image {
+    max-width: 360px;
+    width: 100%;
+    min-height: 201px;
+}
+
+@media screen and (max-width: 768px) {
+    .movie__image  {
+        max-width: 339px;
+        min-height: 190px;
+    }
+}
+
+
+@media screen and (max-width: 350px) {
+    .movie__image  {
+        max-width: 300px;
+        min-height: 168px;
+    }
+}
+
+.movie__info {
+    max-width: 332px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 14px auto 0;
+}
+
+
+.movie__name {
+    max-width: 250px;
+    width: 100%;
+    color: #FFF;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    margin: 0;
+}
+
+@media screen and (max-width: 350px) {
+    .movie__name  {
+        font-size: 12px;
+    }
+}
+
+.movie__duration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 52px;
+    width: 100%;
+    min-height: 18px;
+    height: 100%;
+    background-color: #2F2F2F;
+    border-radius: 3px;
+    color: #8B8B8B;
+    text-align: center;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 10px;
+}
+
+@media screen and (max-width: 350px) {
+    .movie__duration  {
+        font-size: 12px;
+    }
+}
+
+.movie__savebutton {
+    border-radius: 30px;
+    background: #313131;
+    max-width: 72px;
+    width: 100%;
+    color: #FFF;
+    text-align: center;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 9px;
+    border: none;
+    min-height: 21px;
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden; 
+    transition: all 0.5s;
+}
+
+.movie__savebutton:hover {
+    opacity: 0.6;
+}
+
+.movie:hover .movie__savebutton {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.movie__saved-icon {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    opacity: 0;
+    visibility: hidden; 
+    transition: all 0.5s;
+}
+
+.movie:hover .movie__saved-icon {
+    opacity: 1;
+    visibility: visible;
+}
+
+.movie__delete-icon {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    opacity: 0;
+    visibility: hidden; 
+    transition: all 0.5s;
+}
+
+.movie:hover .movie__delete-icon {
+    opacity: 1;
+    visibility: visible;
+}
+
+.movie__saved-icon:hover {
+    opacity: 0.6;
+}
+
+.movie__delete-icon:hover {
+    opacity: 0.6;
+}
