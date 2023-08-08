@@ -47,12 +47,25 @@
     justify-content: space-between;
     flex-wrap: wrap;
     padding-top: 66px;
-    margin-bottom: 100px;
+    margin:0 auto 100px;
+}
+
+@media screen and (max-width: 900px) {
+    .student__container {
+        justify-content: center;
+    }
 }
 
 @media screen and (max-width: 768px) {
     .student__container {
+        justify-content: space-between;
         margin-bottom: 90px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .student__container {
+        justify-content: center;
     }
 }
 
@@ -73,11 +86,39 @@
     width: 100%
 }
 
+
+@media screen and (max-width: 900px) {
+    .student__info {
+        margin-bottom: 50px;
+        text-align: center;
+    }
+}
+
+
 @media screen and (max-width: 768px) {
     .student__info {
         max-width: 364px;
+        margin-bottom: 0;
+        text-align: start;
     }
 }
+
+@media screen and (max-width: 640px) {
+    .student__info {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .student__info {
+        margin-bottom: 0;
+        text-align: start;
+    }
+}
+
+
+
 
 
 .student__name {

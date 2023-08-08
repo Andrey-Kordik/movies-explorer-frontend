@@ -64,7 +64,7 @@
 
 @media screen and (max-width: 350px) {
     .profile__inputs {
-        margin-bottom: 380px;
+        margin-bottom: 363px;
     }
 }
 
@@ -163,4 +163,9 @@
 .profile__save-button:hover {
     opacity: 0.5;
     cursor: pointer;
+}
+
+.profile__logout__link {
+    text-decoration: none;
+    color: #EE3465;
 }

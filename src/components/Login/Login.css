@@ -27,6 +27,9 @@
     }
 }
 
+.login .register__button {
+        margin-top: 160px;
+    }
 
 @media screen and (max-width: 350px) {
     .login .register__button {

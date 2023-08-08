@@ -7,10 +7,10 @@ function Footer() {
             <p className='footer_text'>Учебный проект Яндекс.Практикум х BeatFilm.</p>
             <div className='footer__container'>
                 <p className='footer__year'>&copy; 2023</p>
-                <div className='footer__data'>
-                    <Link to="https://practicum.yandex.ru/" className='footer__info' target="_blank">Яндекс.Практикум</Link>
-                    <Link to="https://github.com/" className='footer__info' target="_blank">Github</Link>
-                </div>
+                <ul className='footer__data'>
+                    <li><Link to="https://practicum.yandex.ru/" className='footer__info' target="_blank">Яндекс.Практикум</Link></li>
+                   <li><Link to="https://github.com/" className='footer__info' target="_blank">Github</Link></li>
+                </ul>
             </div>
         </footer>
     );

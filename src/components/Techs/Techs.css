@@ -96,9 +96,10 @@
 
 @media screen and (max-width: 350px) {
     .techs__title {
-        font-size: 30px;
-        letter-spacing: -1.2px;
         margin: 60px auto 24px;
+        font-size: 30px;
+        line-height: normal;
+        letter-spacing: -1.2px;
     }
 }
 
@@ -141,6 +142,8 @@
     width: 100%;
     justify-content: space-between;
     margin: 0 auto;
+    padding: 0;
+    list-style-type: none;
 }
 
 @media screen and (max-width: 768px) {
@@ -149,7 +152,7 @@
     }
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 630px) {
     .techs__box {
         max-width: 178px;
         display: grid;

@@ -6,19 +6,20 @@ import Portfolio from '../Portfolio/Portfolio';
 import Header from '../Header/Header.js';
 import Footer from '../Footer/Footer';
 
-function Main({isLoggedIn }) {
+function Main({ isLoggedIn }) {
   return (
-    <main className="main">
-      <Header
-      />
-      <Promo />
-      <AboutProject />
-      <Techs />
-      <AboutMe />
-      <Portfolio />
+    <>
+      <Header />
+      <main className="main">
+        <Promo />
+        <AboutProject />
+        <Techs />
+        <AboutMe />
+        <Portfolio />
+      </main>
       <Footer />
-    </main>
-  );
-}
+      </>
+      );
+   }
 
 export default Main

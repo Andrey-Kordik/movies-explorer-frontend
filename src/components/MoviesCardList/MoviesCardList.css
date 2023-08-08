@@ -28,6 +28,7 @@
     padding-top: 80px;
     row-gap: 60px;
     column-gap: 30px;
+    justify-content: center;
 }
 
 @media screen and (max-width: 768px) {
@@ -42,7 +43,7 @@
     .movies__container {
         padding-top: 50px;
         grid-template-columns: repeat(auto-fit, 300px);
-        row-gap: 47px;
+        row-gap: 39px;
         margin-bottom: 62px;
     }
 }

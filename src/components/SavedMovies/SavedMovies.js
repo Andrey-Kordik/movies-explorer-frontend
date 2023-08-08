@@ -1,18 +1,22 @@
 import SearchForm from '../SearchForm/SearchForm';
-import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import SavedMoviesCardList from '../SavedMoviesCardList/SavedMoviesCardList';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header.js';
 
-function SavedMovies({ isLoggedIn }) {
+function SavedMovies({ isLoggedIn, onCheckboxChange, isCheckboxChecked }) {
   return (
-    <main className="saved-movies">
+    <>
       <Header
         isLoggedIn={isLoggedIn}
       />
-      <SearchForm />
-      <MoviesCardList />
+      <main className="saved-movies">
+        <SearchForm 
+           isCheckboxChecked={isCheckboxChecked}
+           onCheckboxChange={onCheckboxChange}/>
+        <SavedMoviesCardList />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }
 

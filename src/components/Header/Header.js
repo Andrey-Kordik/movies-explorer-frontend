@@ -1,4 +1,4 @@
-import logo from '../../images/logo.png'
+import logo from '../../images/logo.svg'
 import './Header.css';
 import { Link, NavLink } from 'react-router-dom';
 import { useState } from 'react';

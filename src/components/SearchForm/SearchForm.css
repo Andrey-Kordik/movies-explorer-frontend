@@ -35,7 +35,7 @@
 @media screen and (max-width: 350px) {
     .searchform__container  {
         max-width: 708px;
-        margin-bottom: 47px;
+        margin-bottom: 46px;
     }
 }
 
@@ -54,6 +54,10 @@
     padding: 0;
 }
 
+.searchform__input::placeholder {
+    padding-left: 20px;
+}
+
 @media screen and (max-width: 768px) {
     .searchform__input  {
         max-width: 654px;
@@ -65,6 +69,13 @@
         max-width: 238px;
     }
 }
+
+@media screen and (max-width: 350px) {
+    .searchform__input::placeholder  {
+        padding-left: 13px;
+    }
+}
+
 
 
 .searchform__button {

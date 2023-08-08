@@ -7,6 +7,13 @@
     height: 100vh;
 }
 
+@media screen and (max-width: 350px) {
+    .page404  {
+        display: block;
+    }
+}
+
+
 .page404__heading {
     color: #FFF;
     text-align: center;
@@ -20,8 +27,11 @@
 @media screen and (max-width: 350px) {
     .page404__heading {
         font-size: 80px;
+        margin-top: 330px;
     }
 }
+
+
 
 
 .page404__text {
@@ -47,6 +57,7 @@
     font-size: 14px;
     font-weight: 400;
     text-decoration: none;
+    display: block;
 }
 
 @media screen and (max-width: 350px) {

@@ -28,7 +28,7 @@ max-width: 300px;
 }
 
 @media screen and (max-width: 350px) {
-    .register .logo__link {
+   .logo__link {
         margin: 0 auto;
     }
 }
@@ -49,6 +49,7 @@ max-width: 300px;
 @media screen and (max-width: 350px) {
     .register__heading {
         text-align: center;
+        margin: 50px 0 80px;
     }
 }
 
@@ -58,6 +59,13 @@ max-width: 300px;
     flex-direction: column;
     padding: 0;
     margin-bottom: 20px;
+}
+
+@media screen and (max-width: 350px) {
+    .register__form-group {
+       max-width: 260px;
+       width: 100%;
+    }
 }
 
 .register__label {
@@ -79,6 +87,18 @@ max-width: 300px;
     font-family: 'Inter', Arial, sans-serif;
     font-size: 13px;
     font-weight: 400;
+    padding: 0;
+}
+
+
+@media screen and (max-width: 350px) {
+    .register__input {
+        max-width: 260px;
+    }
+}
+
+.register__input::placeholder {
+    padding-left: 10px;
 }
 
 .register__button {
@@ -98,7 +118,7 @@ max-width: 300px;
     transition: 0.4s;
     opacity: 1;
     padding: 0;
-    margin: 90px 0 16px;
+    margin: 70px 0 16px;
 }
 
 @media screen and (max-width: 350px) {
