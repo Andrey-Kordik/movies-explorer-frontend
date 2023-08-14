@@ -1,0 +1,22 @@
+.savedmovies__list {
+    max-width: 1140px;
+    margin: 0 auto 168px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+    .savedmovies__list  {
+        max-width: 708px;
+        margin-bottom: 115px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .savedmovies__list  {
+        max-width: 300px;
+        margin-bottom: 91px;
+    }
+}

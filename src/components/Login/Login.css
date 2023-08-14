@@ -1,0 +1,38 @@
+.login {
+    max-width: 396px;
+    width: 100%;
+    margin: 70px auto 0;
+}
+
+@media screen and (max-width: 768px) {
+    .login {
+        margin-top: 232px;
+        margin-bottom: 232px;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .login {
+        max-width: 300px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .login {
+        max-width: 260px;
+        margin-top: 56px;
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.login .register__button {
+        margin-top: 160px;
+    }
+
+@media screen and (max-width: 350px) {
+    .login .register__button {
+        margin-top: 247px;
+    }
+}

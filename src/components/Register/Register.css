@@ -1,0 +1,174 @@
+.register {
+    max-width: 396px;
+    width: 100%;
+    margin:70px auto 0;
+}
+
+@media screen and (max-width: 768px) {
+    .register {
+        margin-top: 232px;
+        margin-bottom: 232px;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .register {
+max-width: 300px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .register {
+        max-width: 260px;
+        margin-top: 56px;
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 350px) {
+   .logo__link {
+        margin: 0 auto;
+    }
+}
+
+.register__logo {
+    margin: 70px 0 40px;
+}
+
+
+.register__heading {
+    color: #FFF;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    margin: 40px 0 40px;
+}
+
+@media screen and (max-width: 350px) {
+    .register__heading {
+        text-align: center;
+        margin: 50px 0 80px;
+    }
+}
+
+.register__form-group {
+    border: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 350px) {
+    .register__form-group {
+       max-width: 260px;
+       width: 100%;
+    }
+}
+
+.register__label {
+    color: #8B8B8B;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    margin: 0 0 10px;
+}
+
+.register__input {
+    max-width: 396px;
+    width: 100%;
+    min-height: 46px;
+    border-radius: 8px;
+    background: #2F2F2F;
+    border: none;
+    color: #FFF;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    padding: 0;
+}
+
+
+@media screen and (max-width: 350px) {
+    .register__input {
+        max-width: 260px;
+    }
+}
+
+.register__input::placeholder {
+    padding-left: 10px;
+}
+
+.register__button {
+    max-width: 396px;
+    width: 100%;
+    min-height: 45px;
+    border-radius: 3px;
+    background: #3456F3;
+    color: #FFF;
+    text-align: center;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0 auto;
+    border: none;
+    cursor: pointer;
+    transition: 0.4s;
+    opacity: 1;
+    padding: 0;
+    margin: 70px 0 16px;
+}
+
+@media screen and (max-width: 350px) {
+    .register__button {
+        margin-top: 160px;
+    }
+}
+
+
+.register__button:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.register__text {
+    color: #8B8B8B;
+    text-align: center;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.register__link {
+    color: #4285F4;
+    text-align: center;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.4s;
+    opacity: 1;
+}
+
+.register__link:hover {
+    opacity: 0.5;
+    cursor: pointer;
+
+}
+
+@media screen and (max-width: 350px) {
+    .register__text {
+        font-size: 12px;
+        font-style: normal;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .register__link {
+        font-size: 12px;
+    }
+}

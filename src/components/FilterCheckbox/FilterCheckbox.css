@@ -1,0 +1,39 @@
+.checkbox {
+    display: flex;
+    margin: 0 auto;
+    max-width: 156px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.checkbox__text {
+    color: #FFF;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    margin: 0;
+}
+
+@media screen and (max-width: 350px) {
+    .checkbox__text  {
+        font-size: 11px;
+    }
+}
+
+.checkbox__button {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.checkbox__image {
+    cursor: pointer;
+    max-width: 36px;
+    width: 100%;
+    max-height: 20px;
+}
