@@ -1,17 +1,32 @@
 import './Profile.css';
 import Header from '../Header/Header.js';
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { CurrentUserContext } from '../contexts/CurrentUserContext.js'
 
-function Profile({ isLoggedIn, onLogin }) {
+function Profile({ isLoggedIn, handleUpdateUser, onSignOut}) {
+
 
     const [isEditMode, setIsEditMode] = useState(false);
-    const [name, setName] = useState("Андрей");
-    const [email, setEmail] = useState("kordik000@mail.ru");
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+
+    const currentUser = useContext(CurrentUserContext)
+
+    const changeUserInfo= (event) => {
+        event.preventDefault();
+        handleUpdateUser({name: name, email: email});
+        setIsEditMode(false)
+    }
+
 
     const handleEditButtonClick = () => {
-        setIsEditMode(!isEditMode);
-    };
+        if (isEditMode) {
+          handleUpdateUser({ name, email });
+        } else {
+          setIsEditMode(true);
+        }
+      };
 
     const handleInputChange = (event) => {
         if (event.target.name === "name") {
@@ -20,17 +35,25 @@ function Profile({ isLoggedIn, onLogin }) {
             setEmail(event.target.value);
         }
     };
+    
+    useEffect(() => {
+        setName(currentUser.name);
+        setEmail(currentUser.email);
+    }, [currentUser]); 
 
+    function handleSignOut() {
+        onSignOut()
+    }
+    console.log(name)
     return (
         <>
             <Header
                 isLoggedIn={isLoggedIn}
-                onLogin={onLogin}
             />
             <main>
                 <section className="profile">
                     <h1 className='profile__heading'>Привет, {name}!</h1>
-                    <form className="profile__form">
+                    <form className="profile__form" onSubmit={changeUserInfo}>
                         <fieldset className="profile__inputs">
                             <div className="profile__input-container">
                                 <label className="profile__label">Имя</label>
@@ -38,7 +61,7 @@ function Profile({ isLoggedIn, onLogin }) {
                                     name="name"
                                     type="text"
                                     className={isEditMode ? 'profile__input' : 'profile__input profile__input--readonly'}
-                                    value={name}
+                                    value={name || ""}
                                     readOnly={!isEditMode}
                                     onChange={handleInputChange}
                                 />
@@ -49,7 +72,7 @@ function Profile({ isLoggedIn, onLogin }) {
                                     name="email"
                                     type="text"
                                     className={isEditMode ? 'profile__input' : 'profile__input profile__input--readonly'}
-                                    value={email}
+                                    value={email || ""}
                                     readOnly={!isEditMode}
                                     onChange={handleInputChange}
                                 />
@@ -63,7 +86,7 @@ function Profile({ isLoggedIn, onLogin }) {
                             <button className='profile__edit-button' onClick={handleEditButtonClick}>
                                 Редактировать
                             </button>
-                            <button className='profile__logout-button'><Link className='profile__logout__link' to="/">Выйти из аккаунта</Link></button>
+                            <button className='profile__logout-button' onClick={handleSignOut}><Link className='profile__logout__link' to="/">Выйти из аккаунта</Link></button>
                         </>
                         )}
                     </form>

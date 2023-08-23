@@ -1,17 +1,31 @@
 import './MovieCard.css';
-import { useState } from 'react';
+import { useContext } from 'react';
 import savedIcon from '../../images/saved-icon.svg';
 import deleteIcon from '../../images/delete-icon.svg';
 import { useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { SavedMoviesContext } from '../contexts/SavedMoviesContext';
 
-function Movie({ image, name, duration }) {
-  const [isSaved, setIsSaved] = useState(false);
+function Movie({ movie, onAddMovie, onDeleteMovie }) {
 
-  const handleSaveButtonClick = () => {
-    setIsSaved(!isSaved);
-  };
+
+  const {savedMovies} = useContext(SavedMoviesContext)
+
+  const isSaved = savedMovies.some((item) => {
+    return movie.id === item.movieId
+  });
 
   const location = useLocation();
+
+
+  const handleSaveButtonClick = () => {
+    onAddMovie(movie);
+
+  };
+
+  const handleDeleteButtonClick = () => {
+    onDeleteMovie(movie._id);
+  };
 
   const renderSaveButton = () => {
     if (location.pathname === '/movies') {
@@ -36,19 +50,36 @@ function Movie({ image, name, duration }) {
           className="movie__delete-icon"
           src={deleteIcon}
           alt="удалить"
+          onClick={handleDeleteButtonClick}
         />
       );
     }
   };
 
+  const formatDuration = (duration) => {
+    const hours = Math.floor(duration / 60);
+    const minutes = duration % 60;
 
-  
+    if (hours === 0) {
+      return `${minutes}мин`;
+    } else if (minutes === 0) {
+      return `${hours}ч`;
+    } else {
+      return `${hours}ч ${minutes}м`;
+    }
+  };
+
+  const imageSrc = location.pathname === '/movies' ? `https://api.nomoreparties.co${movie.image.url}` : movie.image;
+
   return (
     <article className="movie">
-      <img className="movie__image" src={image} alt={name}></img>
+      <Link to={movie.trailerLink} target="_blank">
+        <img className="movie__image" src={imageSrc} alt={movie.nameRU} />
+      </Link>
+
       <div className="movie__info">
-        <p className="movie__name">{name}</p>
-        <div className="movie__duration">{duration}</div>
+        <p className="movie__name">{movie.nameRU}</p>
+        <div className="movie__duration">{formatDuration(movie.duration)}</div>
       </div>
       {renderSaveButton()}
     </article>

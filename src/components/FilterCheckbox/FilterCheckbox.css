@@ -19,16 +19,16 @@
 }
 
 @media screen and (max-width: 350px) {
-    .checkbox__text  {
+    .checkbox__text {
         font-size: 11px;
     }
 }
 
 .checkbox__button {
+    cursor: pointer;
     position: absolute;
     opacity: 0;
-    width: 0;
-    height: 0;
+    width: 36px;
 }
 
 .checkbox__image {
