@@ -133,7 +133,7 @@ class MainApi {
 }
 
 export const mainApi = new MainApi({
-    url: 'api.domain.kordik.diploma.nomoredomains.xyz',
+    url: 'http://localhost:4000',
     headers: {
         'Content-Type': 'application/json'
     }

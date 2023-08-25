@@ -24,6 +24,7 @@ function SearchForm({ movies, isCheckboxChecked, onCheckboxChange, onSearch, onI
 
   const handleSubmit = (e) => {
     localStorage.setItem('searchTerm', searchTerm);
+    localStorage.setItem('isCheckboxChecked', isCheckboxChecked);
 
     setIsLoading(true);
     e.preventDefault();
@@ -36,6 +37,17 @@ function SearchForm({ movies, isCheckboxChecked, onCheckboxChange, onSearch, onI
   };
 
 
+
+  useEffect(() => {
+    const savedSearchTerm = localStorage.getItem('searchTerm');
+    const savedCheckbox = localStorage.getItem('isCheckboxChecked');
+  
+
+   if (savedSearchTerm, savedCheckbox ) {
+     setSearchTerm(savedSearchTerm);
+     onCheckboxChange(savedCheckbox);
+    }
+  }, []);
 
   useEffect(() => {
     handleSearch() 
