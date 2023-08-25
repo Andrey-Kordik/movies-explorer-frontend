@@ -3,14 +3,13 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import { useState, useEffect } from 'react';
 
 
-function SearchForm({ movies, isCheckboxChecked, onCheckboxChange, onSearch, onIsSubmitted}) {
+function SearchForm({ movies, isCheckboxChecked, onCheckboxChange, onSearch, onIsSubmitted, setIsLoading, getResults }) {
 
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = () => {
  
-    
-    const filteredMovies = movies.filter(
+        const filteredMovies = movies.filter(
       (movie) =>
         movie.nameRU.toLowerCase().includes(searchTerm.toLowerCase()) &&
         (!isCheckboxChecked || movie.duration <= 40)
@@ -30,25 +29,31 @@ function SearchForm({ movies, isCheckboxChecked, onCheckboxChange, onSearch, onI
   }, [ isCheckboxChecked ]);
 
   const handleSubmit = (e) => {
-    e.preventDefault(); 
-    handleSearch();
-    onIsSubmitted()
-
     localStorage.setItem('searchTerm', searchTerm);
     localStorage.setItem('isCheckboxChecked', isCheckboxChecked);
-    
+
+    setIsLoading(true);
+    e.preventDefault();
+    handleSearch();
+    onIsSubmitted();
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
   };
 
 
-  //useEffect(() => {
-    //const savedSearchTerm = localStorage.getItem('searchTerm');
-    //const savedIsCheckboxChecked = localStorage.getItem('isCheckboxChecked');
 
-   // if (savedSearchTerm && savedIsCheckboxChecked) {
-     //setSearchTerm(savedSearchTerm);
-     //onCheckboxChange(savedIsCheckboxChecked === 'true');
-    //}
-  //}, []);
+  useEffect(() => {
+    const savedSearchTerm = localStorage.getItem('searchTerm');
+    const savedCheckbox = localStorage.getItem('isCheckboxChecked');
+  
+
+   if (savedSearchTerm, savedCheckbox ) {
+     setSearchTerm(savedSearchTerm);
+     onCheckboxChange(savedCheckbox);
+    }
+  }, []);
 
 
 

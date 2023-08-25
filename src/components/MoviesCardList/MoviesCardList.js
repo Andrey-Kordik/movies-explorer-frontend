@@ -19,7 +19,14 @@ function setMovies () {
     localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
 }
 
-setMovies ()
+
+
+//const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
+//if (savedMovies) {
+  //setDisplayedCardsDesktop(savedMovies.displayedCardsDesktop);
+  //setDisplayedCardsMobile(savedMovies.displayedCardsMobile);
+//}
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -47,12 +54,6 @@ setMovies ()
         setShowButton(movies.length > Math.max(maxDisplayedCardsDesktop, maxDisplayedCardsMobile));
       }, 300);
     };
-
-    const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
-    if (savedMovies) {
-      setDisplayedCardsDesktop(savedMovies.displayedCardsDesktop);
-      setDisplayedCardsMobile(savedMovies.displayedCardsMobile);
-    }
 
     handleResize();
 

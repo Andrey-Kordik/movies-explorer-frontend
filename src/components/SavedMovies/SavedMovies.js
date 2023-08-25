@@ -4,8 +4,7 @@ import Header from '../Header/Header.js';
 import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
-function SavedMovies({ isLoggedIn, savedMovies, isLoading, isCheckboxChecked, onCheckboxChange, onSearch, filteredMovies, onDeleteMovie, onIsSubmitted, setIsLoading}) 
-{
+function SavedMovies({ isLoggedIn, savedMovies, isLoading, isCheckboxChecked, onCheckboxChange, onSearch, filteredMovies, onDeleteMovie, onIsSubmitted, setIsLoading }) {
 
   return (
     <>

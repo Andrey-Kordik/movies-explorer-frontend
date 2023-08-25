@@ -31,6 +31,7 @@ function App() {
   const [savedMovies,setSavedMovies] = useState([]);
 
 
+
   const navigate = useNavigate()
 
   function handleUpdateUser(data) {
@@ -140,7 +141,6 @@ function deleteMovie(id) {
     moviesApi.getMovies()
       .then((data) => {
         setCurrentMovies(data)
-        
 
       })
       .catch(err => {
@@ -181,6 +181,7 @@ function deleteMovie(id) {
     setFilteredMovies(filteredMovies);
 };
 
+
 const handleIsSubmitted = () => {
   setIsSubmitted(true);
 }
@@ -190,8 +191,10 @@ const changeCheckBox = () => {
 }
 
 
+
 useEffect(() => {
   verifyToken()
+
 }, [])
 
   return (
@@ -221,6 +224,7 @@ useEffect(() => {
           onIsSubmitted = {handleIsSubmitted}
           setIsLoading = {setIsLoading}
           setIsCheckboxChecked ={setIsCheckboxChecked}
+      
           
       
           />} isLoggedIn={isLoggedIn} />} />

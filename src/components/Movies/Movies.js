@@ -5,10 +5,10 @@ import Footer from '../Footer/Footer';
 import Preloader from '../Preloader/Preloader';
 
 
-function Movies({ currentMovies, 
-    isLoading, 
-    isLoggedIn, 
-    isCheckboxChecked, 
+function Movies({ currentMovies,
+    isLoading,
+    isLoggedIn,
+    isCheckboxChecked,
     onCheckboxChange,
     onSearch,
     filteredMovies,
@@ -17,13 +17,9 @@ function Movies({ currentMovies,
     onIsSubmitted,
     onDeleteMovie,
     setIsLoading,
-    
-    
+
 }) {
 
-
-
-    
     return (
 
         <>
@@ -39,15 +35,15 @@ function Movies({ currentMovies,
                     onIsSubmitted={onIsSubmitted}
                     setIsLoading={setIsLoading}
                 />
-        {isLoading ? (
-        <Preloader />
-      ) : (
-        <MoviesCardList movies={isSubmitted ? filteredMovies : []} 
-        onAddMovie={onAddMovie}
-        isSubmitted={isSubmitted}
-        onDeleteMovie={onDeleteMovie}
-        />
-      )}
+                {isLoading ? (
+                    <Preloader />
+                ) : (
+                    <MoviesCardList movies={isSubmitted ? filteredMovies : []}
+                        onAddMovie={onAddMovie}
+                        isSubmitted={isSubmitted}
+                        onDeleteMovie={onDeleteMovie}
+                    />
+                )}
             </main>
             <Footer />
         </>
