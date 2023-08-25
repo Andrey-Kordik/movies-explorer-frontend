@@ -7,6 +7,7 @@ class MoviesApi {
     getMovies() {
         return fetch(`${this.url}/beatfilm-movies`, {
             headers: this.headers,
+            
         })
             .then(res => {
                 return this._checkResult(res)

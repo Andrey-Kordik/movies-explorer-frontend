@@ -22,12 +22,6 @@ function SearchForm({ movies, isCheckboxChecked, onCheckboxChange, onSearch, onI
     setSearchTerm(e.target.value);
   };
 
-  useEffect(() => {
-    handleSearch() 
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ isCheckboxChecked ]);
-
   const handleSubmit = (e) => {
     localStorage.setItem('searchTerm', searchTerm);
     localStorage.setItem('isCheckboxChecked', isCheckboxChecked);
@@ -55,7 +49,11 @@ function SearchForm({ movies, isCheckboxChecked, onCheckboxChange, onSearch, onI
     }
   }, []);
 
+  useEffect(() => {
+    handleSearch() 
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isCheckboxChecked ]);
 
   return (
     <section className="searchform">

@@ -20,15 +20,8 @@ function setMovies () {
 }
 
 
-
-//const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
-//if (savedMovies) {
-  //setDisplayedCardsDesktop(savedMovies.displayedCardsDesktop);
-  //setDisplayedCardsMobile(savedMovies.displayedCardsMobile);
-//}
-
-
   useEffect(() => {
+    setMovies()
     const handleResize = () => {
       setTimeout(() => {
         const windowWidth = window.innerWidth;
@@ -57,6 +50,12 @@ function setMovies () {
 
     handleResize();
 
+    const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
+    if (savedMovies) {
+      setDisplayedCardsDesktop(savedMovies.displayedCardsDesktop);
+      setDisplayedCardsMobile(savedMovies.displayedCardsMobile);
+    }
+
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
@@ -64,6 +63,15 @@ function setMovies () {
     // eslint-disable-next-line react-hooks/exhaustive-deps
 
     
+  }, [movies]);
+
+
+  useEffect(() => { 
+    const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
+if (savedMovies) {
+  setDisplayedCardsDesktop(savedMovies.displayedCardsDesktop);
+  setDisplayedCardsMobile(savedMovies.displayedCardsMobile);
+}
   }, [movies]);
 
   const LoadMoreMovies = () => {
