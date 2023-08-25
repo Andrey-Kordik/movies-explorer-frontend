@@ -21,7 +21,7 @@ function setMovies () {
 
 
   useEffect(() => {
-    setMovies()
+  // setMovies()
     const handleResize = () => {
       setTimeout(() => {
         const windowWidth = window.innerWidth;
@@ -66,13 +66,13 @@ function setMovies () {
   }, [movies]);
 
 
-  useEffect(() => { 
-    const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
-if (savedMovies) {
-  setDisplayedCardsDesktop(savedMovies.displayedCardsDesktop);
-  setDisplayedCardsMobile(savedMovies.displayedCardsMobile);
-}
-  }, [movies]);
+ // useEffect(() => { 
+ //   const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
+//if (savedMovies) {
+//  setDisplayedCardsDesktop(savedMovies.displayedCardsDesktop);
+ // setDisplayedCardsMobile(savedMovies.displayedCardsMobile);
+//}
+ // }, [movies]);
 
   const LoadMoreMovies = () => {
     const windowWidth = window.innerWidth;

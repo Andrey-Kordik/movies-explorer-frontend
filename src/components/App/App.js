@@ -30,8 +30,6 @@ function App() {
 
   const [savedMovies,setSavedMovies] = useState([]);
 
-
-
   const navigate = useNavigate()
 
   function handleUpdateUser(data) {
@@ -83,7 +81,6 @@ function App() {
       })
   }
  
-
   function handleSignOut() {
     mainApi.logout()
       .then(() => {
@@ -95,9 +92,9 @@ function App() {
         console.log(err.message)
       })
   }
+
 function addMovie (movie) {
   mainApi.addMovies({
-
       country: movie.country,
       director: movie.director,
       duration: movie.duration,
@@ -119,10 +116,8 @@ function addMovie (movie) {
     })
 }
 
-
 function deleteMovie(id) {
-  mainApi
-    .deleteMovies(id)
+  mainApi.deleteMovies(id)
     .then(() => {
       setFilteredMovies(filteredMovies =>
         filteredMovies.filter(movie => movie._id !== id)
@@ -136,8 +131,8 @@ function deleteMovie(id) {
     });
 }
 
-
   useEffect(() => {
+
     moviesApi.getMovies()
       .then((data) => {
         setCurrentMovies(data)
@@ -147,7 +142,6 @@ function deleteMovie(id) {
         console.log(err.message)
       })
   }, [])
-
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -181,7 +175,6 @@ function deleteMovie(id) {
     setFilteredMovies(filteredMovies);
 };
 
-
 const handleIsSubmitted = () => {
   setIsSubmitted(true);
 }
@@ -191,10 +184,10 @@ const changeCheckBox = () => {
 }
 
 
-
 useEffect(() => {
   verifyToken()
 
+// eslint-disable-next-line react-hooks/exhaustive-deps
 }, [])
 
   return (
@@ -224,9 +217,7 @@ useEffect(() => {
           onIsSubmitted = {handleIsSubmitted}
           setIsLoading = {setIsLoading}
           setIsCheckboxChecked ={setIsCheckboxChecked}
-      
           
-      
           />} isLoggedIn={isLoggedIn} />} />
 
           <Route path="/saved-movies" element={<ProtectedRoute element={
