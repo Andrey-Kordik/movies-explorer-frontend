@@ -5,19 +5,25 @@ import Footer from '../Footer/Footer';
 import Preloader from '../Preloader/Preloader';
 
 
-function Movies({ currentMovies,
+function Movies({
     isLoading,
     isLoggedIn,
     isCheckboxChecked,
     onCheckboxChange,
-    onSearch,
+    onSubmit,
     filteredMovies,
     isSubmitted,
     onAddMovie,
     onIsSubmitted,
     onDeleteMovie,
     setIsLoading,
-
+    onChange,
+    searchTerm,
+    showButton,
+    loadMoreMovies,
+    displayedCardsDesktop,
+    displayedCardsMobile,
+    isMoviesRoute,
 }) {
 
     return (
@@ -28,12 +34,13 @@ function Movies({ currentMovies,
             />
             <main className="movies">
                 <SearchForm
-                    movies={currentMovies}
                     isCheckboxChecked={isCheckboxChecked}
                     onCheckboxChange={onCheckboxChange}
-                    onSearch={onSearch}
+                    onSubmit={onSubmit}
                     onIsSubmitted={onIsSubmitted}
                     setIsLoading={setIsLoading}
+                    onChange = {onChange}
+                    searchTerm = {searchTerm}
                 />
                 {isLoading ? (
                     <Preloader />
@@ -42,6 +49,11 @@ function Movies({ currentMovies,
                         onAddMovie={onAddMovie}
                         isSubmitted={isSubmitted}
                         onDeleteMovie={onDeleteMovie}
+                        showButton = {showButton}
+                        loadMoreMovies = {loadMoreMovies}
+                        displayedCardsDesktop = {displayedCardsDesktop}
+                        displayedCardsMobile = {displayedCardsMobile}
+                        isMoviesRoute = {isMoviesRoute}
                     />
                 )}
             </main>
