@@ -8,7 +8,6 @@ import { SavedMoviesContext } from '../contexts/SavedMoviesContext';
 
 function Movie({ movie, onAddMovie, onDeleteMovie }) {
 
-
   const {savedMovies} = useContext(SavedMoviesContext)
 
   const isSaved = savedMovies.some((item) => {

@@ -4,7 +4,6 @@
 
 Макет под названием dark-2
 
-
 ## Проект на сайте
 
 https://domain.kordik.diploma.nomoredomains.xyz

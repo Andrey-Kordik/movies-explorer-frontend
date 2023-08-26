@@ -52,11 +52,9 @@
     font-weight: 400;
     line-height: 18px;
     padding: 0;
-}
-
-.searchform__input::placeholder {
     padding-left: 20px;
 }
+
 
 @media screen and (max-width: 768px) {
     .searchform__input  {
