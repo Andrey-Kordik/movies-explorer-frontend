@@ -30,6 +30,7 @@ function App() {
   const [displayedCardsDesktop, setDisplayedCardsDesktop] = useState(0);
   const [displayedCardsMobile, setDisplayedCardsMobile] = useState(0);
   const [showButton, setShowButton] = useState(false);
+  const [searchTermSavedMovies, setSearchTermSavedMovies] = useState('');
 
   const navigate = useNavigate()
   const location = useLocation();
@@ -194,7 +195,7 @@ function App() {
 
     const filteredSavedMovies = savedMovies.filter(
       (movie) =>
-        movie.nameRU.toLowerCase().includes(searchTerm.toLowerCase()) &&
+        movie.nameRU.toLowerCase().includes(searchTermSavedMovies.toLowerCase()) &&
         (!isCheckboxChecked || movie.duration <= 40)
     );
     handleSubmitSavedMoviesForm(filteredSavedMovies);
@@ -208,8 +209,12 @@ function App() {
     setFilteredSavedMovies(filteredMovies);
   };
 
-  const handleChange = (e) => {
+  const handleChangeCurrentMovies = (e) => {
     setSearchTerm(e.target.value);
+  };
+
+  const handleChangeSavedMovies = (e) => {
+    setSearchTermSavedMovies(e.target.value);
   };
 
   const handleSubmitCurrentMovies = (e) => {
@@ -347,7 +352,7 @@ function App() {
                 onDeleteMovie={deleteMovie}
                 onIsSubmitted={handleIsSubmitted}
                 setIsLoading={setIsLoading}
-                onChange={handleChange}
+                onChange={handleChangeCurrentMovies}
                 searchTerm={searchTerm}
                 showButton={showButton}
                 loadMoreMovies={loadMoreMovies}
@@ -370,8 +375,8 @@ function App() {
                 onDeleteMovie={deleteMovie}
                 onIsSubmitted={setIsSubmitted}
                 setIsLoading={setIsLoading}
-                onChange={handleChange}
-                searchTerm={searchTerm}
+                onChange={handleChangeSavedMovies}
+                searchTerm={searchTermSavedMovies}
               />} isLoggedIn={isLoggedIn} />} />
 
             <Route path="/profile" element={<ProtectedRoute element={
