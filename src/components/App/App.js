@@ -87,18 +87,6 @@ function App() {
       })
   }
 
-  function handleSignOut() {
-    mainApi.logout()
-      .then(() => {
-        localStorage.clear()
-        setLoggedIn(false);
-        navigate('/signin');
-      })
-      .catch((err) => {
-        console.log(err.message)
-      })
-  }
-
   function addMovie(movie) {
     mainApi.addMovies({
       country: movie.country,
@@ -174,6 +162,33 @@ function App() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn])
+
+  function clearUserInfo() {
+    setLoggedIn(false);
+    setCurrentUser({
+      name: '',
+      email: '',
+    });
+    setCurrentMovies([])
+    setSavedMovies([])
+    setIsSubmitted(false);
+    setSearchTerm('');
+    setIsCheckboxChecked(false);
+    localStorage.clear();
+  }
+
+  function handleSignOut() {
+    localStorage.clear()
+    mainApi.logout()
+      .then(() => {
+        clearUserInfo() 
+        navigate('/signin');
+      })
+      .catch((err) => {
+        console.log(err.message)
+      })
+  }
+
 
   const handleIsSubmitted = () => {
     setIsSubmitted(true);
@@ -330,6 +345,7 @@ function App() {
     handleSearchCurrentMovies()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isCheckboxChecked, savedMovies])
+
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
