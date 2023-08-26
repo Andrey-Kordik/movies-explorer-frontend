@@ -5,15 +5,26 @@ function useFormWithValidation() {
     const [errors, setErrors] = useState({});
     const [isValid, setIsValid] = useState(false);
   
-    const handleChange = (event) => {
-      const target = event.target;
-      const name = target.name;
-      const value = target.value;
-      setValues({...values, [name]: value});
-      setErrors({...errors, [name]: target.validationMessage });
-      setIsValid(target.closest("form").checkValidity());
+    const handleChange = (event) => {   
+      const target = event.target;   
+      const name = target.name;   
+      const value = target.value;   
+      setValues((prevValues) => ({ ...prevValues, [name]: value }));   
+      
+      let emailError = target.validationMessage;   
+      if (name === 'email') {   
+        if (!value.includes('.')) {   
+          emailError = 'Email адрес должен содержать точку перед именем домена верхнего уровня';   
+        } else if (value.endsWith('.')) {
+          emailError = 'Email адрес не должен заканчиваться на точку';
+        }
+      }   
+      setErrors((prevErrors) => ({ ...prevErrors, [name]: target.validationMessage || emailError }));   
+     
+      const isEmailError = name === 'email' && emailError; 
+      setIsValid((prevIsValid) => target.closest("form").checkValidity() && !isEmailError);   
     };
-  
+    
     const resetForm = useCallback(
       (newValues = {}, newErrors = {}, newIsValid = false) => {
         setValues(newValues);
