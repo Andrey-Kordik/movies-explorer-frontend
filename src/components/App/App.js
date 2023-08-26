@@ -61,9 +61,8 @@ function App() {
 
   function handleRegister(name, email, password) {
     mainApi.register(name, email, password)
-      .then((user) => {
-        console.log(user)
-        navigate("/signin")
+      .then(() => {
+        handleLogin(email, password)
       })
       .catch(err => {
         console.log(err.message)
