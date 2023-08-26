@@ -31,6 +31,7 @@ function App() {
   const [displayedCardsMobile, setDisplayedCardsMobile] = useState(0);
   const [showButton, setShowButton] = useState(false);
   const [searchTermSavedMovies, setSearchTermSavedMovies] = useState('');
+  const [isSavedMoviesCheckboxChecked, setIsSavedMoviesCheckboxChecked] = useState(false);
 
   const navigate = useNavigate()
   const location = useLocation();
@@ -181,6 +182,10 @@ function App() {
   const changeCheckBox = () => {
     setIsCheckboxChecked(!isCheckboxChecked);
   }
+
+  const changeSavedMoviesCheckBox = () => {
+    setIsSavedMoviesCheckboxChecked(!isSavedMoviesCheckboxChecked);
+  }
   const handleSearchCurrentMovies = () => {
 
     const filteredMovies = currentMovies.filter(
@@ -196,7 +201,7 @@ function App() {
     const filteredSavedMovies = savedMovies.filter(
       (movie) =>
         movie.nameRU.toLowerCase().includes(searchTermSavedMovies.toLowerCase()) &&
-        (!isCheckboxChecked || movie.duration <= 40)
+        (!isSavedMoviesCheckboxChecked || movie.duration <= 40)
     );
     handleSubmitSavedMoviesForm(filteredSavedMovies);
   }
@@ -366,8 +371,8 @@ function App() {
 
               <SavedMovies
                 savedMovies={savedMovies}
-                isCheckboxChecked={isCheckboxChecked}
-                onCheckboxChange={changeCheckBox}
+                isCheckboxChecked={isSavedMoviesCheckboxChecked}
+                onCheckboxChange={changeSavedMoviesCheckBox}
                 filteredMovies={filteredSavedMovies}
                 isLoggedIn={isLoggedIn}
                 isSubmitted={isSubmitted}
