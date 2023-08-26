@@ -18,21 +18,23 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute.js';
 function App() {
 
   const [isLoggedIn, setLoggedIn] = useState(false)
-
   const [currentMovies, setCurrentMovies] = useState([])
   const [currentUser, setCurrentUser] = useState({})
-
   const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
-
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [filteredSavedMovies, setFilteredSavedMovies] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
   const [savedMovies, setSavedMovies] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [displayedCardsDesktop, setDisplayedCardsDesktop] = useState(0);
+  const [displayedCardsMobile, setDisplayedCardsMobile] = useState(0);
+  const [showButton, setShowButton] = useState(false);
 
   const navigate = useNavigate()
   const location = useLocation();
+
+  const isMoviesRoute = location.pathname === '/movies';
 
   function handleUpdateUser(data) {
     mainApi.editUserData(data)
@@ -86,8 +88,8 @@ function App() {
   function handleSignOut() {
     mainApi.logout()
       .then(() => {
-        setLoggedIn(false);
         localStorage.clear()
+        setLoggedIn(false);
         navigate('/signin');
       })
       .catch((err) => {
@@ -171,12 +173,6 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn])
 
-  useEffect(() => {
-    verifyToken()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-
   const handleIsSubmitted = () => {
     setIsSubmitted(true);
   }
@@ -184,9 +180,6 @@ function App() {
   const changeCheckBox = () => {
     setIsCheckboxChecked(!isCheckboxChecked);
   }
-
-  const [searchTerm, setSearchTerm] = useState('');
-
   const handleSearchCurrentMovies = () => {
 
     const filteredMovies = currentMovies.filter(
@@ -205,13 +198,10 @@ function App() {
         (!isCheckboxChecked || movie.duration <= 40)
     );
     handleSubmitSavedMoviesForm(filteredSavedMovies);
-    console.log(filteredSavedMovies)
-
   }
 
   const handleSubmitForm = (filteredMovies) => {
     setFilteredMovies(filteredMovies);
-
   };
 
   const handleSubmitSavedMoviesForm = (filteredMovies) => {
@@ -233,7 +223,6 @@ function App() {
     }, 1000);
   };
 
-
   const handleSubmitSavedMovies = (e) => {
     setIsLoading(true);
     e.preventDefault();
@@ -245,12 +234,11 @@ function App() {
     }, 1000);
   };
 
-
-
-  const [displayedCardsDesktop, setDisplayedCardsDesktop] = useState(0);
-  const [displayedCardsMobile, setDisplayedCardsMobile] = useState(0);
-  const [showButton, setShowButton] = useState(false);
-  const isMoviesRoute = location.pathname === '/movies';
+  useEffect(() => {
+    verifyToken()
+    saveResults()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     const handleResize = () => {
@@ -278,7 +266,6 @@ function App() {
         setShowButton(currentMovies.length > Math.max(maxDisplayedCardsDesktop, maxDisplayedCardsMobile));
       }, 300);
     };
-    getResults();
 
     handleResize();
 
@@ -287,22 +274,7 @@ function App() {
       window.removeEventListener('resize', handleResize);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ searchTerm, isCheckboxChecked, filteredMovies]);
-
-  useEffect(() => {
-    const savedSearchTerm = localStorage.getItem('searchTerm');
-    const savedIsCheckboxChecked = localStorage.getItem('isCheckboxChecked');
-    const savedFilteredMovies = localStorage.getItem('filteredMovies');
-
-    if (savedSearchTerm && savedIsCheckboxChecked && savedFilteredMovies) {
-      setSearchTerm(savedSearchTerm);
-      setIsCheckboxChecked(JSON.parse(savedIsCheckboxChecked));
-      setFilteredMovies(JSON.parse(savedFilteredMovies));
-    }
-  }, [])
-  
-
-
+  }, [currentMovies]);
 
   const loadMoreMovies = () => {
     const windowWidth = window.innerWidth;
@@ -317,16 +289,31 @@ function App() {
     setDisplayedCardsMobile(displayedCardsMobile + loadCounter);
   };
 
-  
+  function saveResults() {
+    const savedSearchTerm = localStorage.getItem('searchTerm');
+    const savedIsCheckboxChecked = localStorage.getItem('isCheckboxChecked');
+    const savedFilteredMovies = localStorage.getItem('filteredMovies');
+    const savedCurrentMovies = localStorage.getItem('currentMovies');
+    const savedisSubmitted = localStorage.getItem('isSubmitted')
 
-  function getResults() {
-    localStorage.setItem('searchTerm', searchTerm);
-    localStorage.setItem('isCheckboxChecked', JSON.stringify(isCheckboxChecked));
-    localStorage.setItem('filteredMovies', JSON.stringify(filteredMovies));
+    if (savedSearchTerm && savedIsCheckboxChecked && savedFilteredMovies && savedCurrentMovies && savedisSubmitted) {
+      setSearchTerm(savedSearchTerm);
+      setIsCheckboxChecked(JSON.parse(savedIsCheckboxChecked));
+      setFilteredMovies(JSON.parse(savedFilteredMovies));
+      setCurrentMovies(JSON.parse(savedCurrentMovies));
+      setIsSubmitted(JSON.parse(savedisSubmitted));
 
+    }
   }
 
+  useEffect(() => {
+    localStorage.setItem('searchTerm', searchTerm);
+    localStorage.setItem('isCheckboxChecked', isCheckboxChecked);
+    localStorage.setItem('filteredMovies', JSON.stringify(filteredMovies));
+    localStorage.setItem('currentMovies', JSON.stringify(currentMovies));
+    localStorage.setItem('isSubmitted', JSON.stringify(isSubmitted));
 
+  }, [searchTerm, isCheckboxChecked, filteredMovies, currentMovies, isSubmitted]);
 
   useEffect(() => {
     handleSearchSavedMovies()
@@ -334,7 +321,6 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isCheckboxChecked, savedMovies])
 
- 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <SavedMoviesContext.Provider value={{ savedMovies }}>

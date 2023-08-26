@@ -16,7 +16,8 @@ function SavedMovies({ isLoggedIn,
   setIsLoading,
   onChange,
   searchTerm,
-  isSubmitted
+  isSubmitted,
+  isMoviesRoute
  }) {
 
   return (
@@ -42,6 +43,7 @@ function SavedMovies({ isLoggedIn,
           <MoviesCardList
           movies={filteredMovies}
             onDeleteMovie={onDeleteMovie}
+            isMoviesRoute = {isMoviesRoute}
           />
         )}
       </main>
