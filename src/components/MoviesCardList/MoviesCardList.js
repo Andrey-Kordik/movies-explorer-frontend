@@ -1,16 +1,49 @@
-
 import './MoviesCardList.css';
 import MovieCard from '../MoviesCard/MovieCard';
+import { useState, useEffect } from 'react';
 
-function MoviesCardList({ movies,   
-  onAddMovie,   
-  onDeleteMovie,   
-  isSubmitted,   
-  loadMoreMovies,   
-  showButton,   
-  displayedCardsDesktop,  
-  displayedCardsMobile,   
+function MoviesCardList({ movies,  
+  onAddMovie,  
+  onDeleteMovie,  
+  isSubmitted,  
   isMoviesRoute }) {  
+  
+  const [showButton, setShowButton] = useState(false);  
+  const [initialCards, setInitialCards] = useState(0);  
+  const movieCards = movies.slice(0, initialCards);  
+  
+  function showInitialMovies() {  
+    if (window.innerWidth < 350) {  
+      setInitialCards(5);  
+    } else if (window.innerWidth >= 350 && window.innerWidth <= 768) {  
+      setInitialCards(8);  
+    } else if (window.innerWidth > 768) {  
+      setInitialCards(12);  
+    }  
+    setShowButton(movies.length > initialCards);  
+  }  
+  
+  useEffect(() => {
+    showInitialMovies();
+    window.addEventListener('resize', showInitialMovies);
+    return () => {
+      window.removeEventListener('resize', showInitialMovies);
+    };
+  }, [movies]);
+  
+  function loadMoreMovies() {  
+    if (window.innerWidth < 350) {  
+      setInitialCards(initialCards + 2);  
+    } else if (window.innerWidth >= 350 && window.innerWidth <= 768) {  
+      setInitialCards(initialCards + 2);  
+    } else if (window.innerWidth > 768) {  
+      setInitialCards(initialCards + 3);  
+    }  
+  }  
+  
+  function hideButton() {  
+    return movieCards.length === movies.length;  
+  }  
   
   return (  
     <section className="movies__list">  
@@ -18,16 +51,14 @@ function MoviesCardList({ movies,
         {movies.length > 0 ? (  
           isMoviesRoute ? (  
             isSubmitted &&  
-            movies  
-              .slice(0, displayedCardsDesktop >= displayedCardsMobile ? displayedCardsDesktop : displayedCardsMobile)  
-              .map((movie) => (  
-                <MovieCard  
-                  key={movie.nameRU}  
-                  movie={movie}  
-                  onAddMovie={onAddMovie}  
-                  onDeleteMovie={onDeleteMovie}  
-                />  
-              ))  
+            movieCards.map((movie) => (  
+              <MovieCard  
+                key={movie.nameRU}  
+                movie={movie}  
+                onAddMovie={onAddMovie}  
+                onDeleteMovie={onDeleteMovie}  
+              />  
+            ))  
           ) : (  
             movies.map((movie) => (  
               <MovieCard  
@@ -44,14 +75,13 @@ function MoviesCardList({ movies,
           ) : null  
         )}  
       </div>  
-      {showButton && displayedCardsDesktop + displayedCardsMobile < movies.length && (  
+      {showButton && !hideButton() && (  
         <button className="movies__more-button" onClick={loadMoreMovies}>  
           Ещё  
         </button>  
       )}  
     </section>  
   );  
-}
-
-
+}  
+  
 export default MoviesCardList;

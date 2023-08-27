@@ -19,10 +19,6 @@ function Movies({
     setIsLoading,
     onChange,
     searchTerm,
-    showButton,
-    loadMoreMovies,
-    displayedCardsDesktop,
-    displayedCardsMobile,
     isMoviesRoute,
 }) {
 
@@ -49,10 +45,6 @@ function Movies({
                         onAddMovie={onAddMovie}
                         isSubmitted={isSubmitted}
                         onDeleteMovie={onDeleteMovie}
-                        showButton = {showButton}
-                        loadMoreMovies = {loadMoreMovies}
-                        displayedCardsDesktop = {displayedCardsDesktop}
-                        displayedCardsMobile = {displayedCardsMobile}
                         isMoviesRoute = {isMoviesRoute}
                     />
                 )}

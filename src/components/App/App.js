@@ -28,9 +28,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [savedMovies, setSavedMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [displayedCardsDesktop, setDisplayedCardsDesktop] = useState(0);
-  const [displayedCardsMobile, setDisplayedCardsMobile] = useState(0);
-  const [showButton, setShowButton] = useState(false);
+
   const [searchTermSavedMovies, setSearchTermSavedMovies] = useState('');
   const [isSavedMoviesCheckboxChecked, setIsSavedMoviesCheckboxChecked] = useState(false);
 
@@ -42,7 +40,8 @@ function App() {
 
   const isMoviesRoute = location.pathname === '/movies';
   
-  
+console.log(filteredMovies)
+
   function handleInfoTooltipOpen() {
     setIsInfoTooltipOpen(true);
   }
@@ -281,54 +280,13 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  useEffect(() => {
-    const handleResize = () => {
-      setTimeout(() => {
-        const windowWidth = window.innerWidth;
-        let cardsPerRowDesktop = 0;
-        let cardsPerRowMobile = 0;
 
-        if (windowWidth >= 768) {
-          cardsPerRowDesktop = 3;
-          cardsPerRowMobile = 1
-        }
-        else if (windowWidth >= 480 && windowWidth < 768) {
-          cardsPerRowDesktop = 2;
-          cardsPerRowMobile = 1;
-        }
-        else if (windowWidth >= 320 && windowWidth < 480) {
-          cardsPerRowDesktop = 1;
-          cardsPerRowMobile = 1;
-        }
-        const maxDisplayedCardsDesktop = cardsPerRowDesktop * 4;
-        const maxDisplayedCardsMobile = cardsPerRowMobile * 5;
-        setDisplayedCardsDesktop(Math.min(maxDisplayedCardsDesktop, currentMovies.length));
-        setDisplayedCardsMobile(Math.min(maxDisplayedCardsMobile, currentMovies.length));
-        setShowButton(currentMovies.length > Math.max(maxDisplayedCardsDesktop, maxDisplayedCardsMobile));
-      }, 300);
-    };
 
-    handleResize();
 
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentMovies]);
 
-  const loadMoreMovies = () => {
-    const windowWidth = window.innerWidth;
-    let loadCounter = 0;
-    if (windowWidth >= 768) {
-      loadCounter = 3;
-    } else if (windowWidth >= 280 && windowWidth < 768) {
-      loadCounter = 2;
-    }
 
-    setDisplayedCardsDesktop(displayedCardsDesktop + loadCounter);
-    setDisplayedCardsMobile(displayedCardsMobile + loadCounter);
-  };
+
+
 
   function saveResults() {
     const savedSearchTerm = localStorage.getItem('searchTerm');
@@ -391,10 +349,6 @@ function App() {
                 setIsLoading={setIsLoading}
                 onChange={handleChangeCurrentMovies}
                 searchTerm={searchTerm}
-                showButton={showButton}
-                loadMoreMovies={loadMoreMovies}
-                displayedCardsDesktop={displayedCardsDesktop}
-                displayedCardsMobile={displayedCardsMobile}
                 isMoviesRoute={isMoviesRoute}
 
               />} isLoggedIn={isLoggedIn} />} />
