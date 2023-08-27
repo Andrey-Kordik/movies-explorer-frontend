@@ -24,7 +24,9 @@ function MoviesCardList({ movies,
   }  
   
   useEffect(() => {
+    setTimeout(() => {
     showInitialMovies();
+  }, 300);
     window.addEventListener('resize', showInitialMovies);
     return () => {
       window.removeEventListener('resize', showInitialMovies);
