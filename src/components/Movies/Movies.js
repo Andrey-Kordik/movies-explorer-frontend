@@ -20,6 +20,11 @@ function Movies({
     onChange,
     searchTerm,
     isMoviesRoute,
+    showButton,
+    hideButton,
+    loadMoreMovies,
+    movieCards,
+    
 }) {
 
     return (
@@ -46,6 +51,10 @@ function Movies({
                         isSubmitted={isSubmitted}
                         onDeleteMovie={onDeleteMovie}
                         isMoviesRoute = {isMoviesRoute}
+                        showButton = {showButton}
+                        hideButton={hideButton}
+                        loadMoreMovies={loadMoreMovies}
+                        movieCards = {movieCards}
                     />
                 )}
             </main>

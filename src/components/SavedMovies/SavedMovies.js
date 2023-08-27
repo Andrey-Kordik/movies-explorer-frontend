@@ -20,6 +20,7 @@ function SavedMovies({ isLoggedIn,
   isMoviesRoute
  }) {
 
+  console.log(filteredMovies)
   return (
     <>
       <Header

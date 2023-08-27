@@ -14,17 +14,20 @@ function Movie({ movie, onAddMovie, onDeleteMovie }) {
     return movie.id === item.movieId
   });
 
+  
   const location = useLocation();
-
 
   const handleSaveButtonClick = () => {
     onAddMovie(movie);
 
   };
 
-  const handleDeleteButtonClick = () => {
-    onDeleteMovie(movie._id);
-  };
+  const handleDeleteButtonClick = () => { 
+    if (location.pathname === '/movies') {    
+      onDeleteMovie(movie.id);
+    } else if (location.pathname === '/saved-movies') {    
+      onDeleteMovie(movie._id);
+    }};
 
   const renderSaveButton = () => {
     if (location.pathname === '/movies') {
@@ -34,6 +37,7 @@ function Movie({ movie, onAddMovie, onDeleteMovie }) {
             className="movie__saved-icon"
             src={savedIcon}
             alt="сохранено"
+            onClick={handleDeleteButtonClick}
           />
         );
       } else {

@@ -39,8 +39,6 @@ function App() {
   const location = useLocation();
 
   const isMoviesRoute = location.pathname === '/movies';
-  
-console.log(filteredMovies)
 
   function handleInfoTooltipOpen() {
     setIsInfoTooltipOpen(true);
@@ -126,18 +124,23 @@ console.log(filteredMovies)
   }
 
   function deleteMovie(id) {
-    mainApi.deleteMovies(id)
-      .then(() => {
-        setFilteredMovies(filteredMovies =>
-          filteredMovies.filter(movie => movie._id !== id)
+    const movieToDelete = savedMovies.find((movie) => {
+      return location.pathname === '/movies' ? movie.movieId === id : movie._id === id;
+    });
+    if (!movieToDelete) {
+      return;
+    }
+    mainApi.deleteMovies(movieToDelete._id).then(() => {
+      if (location.pathname === '/movies') {
+        setSavedMovies((savedMovies) =>
+          savedMovies.filter((movie) => movie.movieId !== id));
+      } if (location.pathname === '/saved-movies') {
+        setSavedMovies((savedMovies) => savedMovies.filter((movie) => movie._id !== id)
         );
-        setSavedMovies(savedMovies =>
-          savedMovies.filter(movie => movie._id !== id)
-        );
-      })
-      .catch(err => {
-        console.log(err.message);
-      });
+      }
+    }).catch((err) => {
+      console.log(err.message);
+    });
   }
 
   useEffect(() => {
@@ -184,7 +187,6 @@ console.log(filteredMovies)
       name: '',
       email: '',
     });
-    setCurrentMovies([])
     setSavedMovies([])
     setIsSubmitted(false);
     setSearchTerm('');
@@ -196,7 +198,7 @@ console.log(filteredMovies)
     localStorage.clear()
     mainApi.logout()
       .then(() => {
-        clearUserInfo() 
+        clearUserInfo()
         navigate('/');
       })
       .catch((err) => {
@@ -281,13 +283,6 @@ console.log(filteredMovies)
   }, [])
 
 
-
-
-
-
-
-
-
   function saveResults() {
     const savedSearchTerm = localStorage.getItem('searchTerm');
     const savedIsCheckboxChecked = localStorage.getItem('isCheckboxChecked');
@@ -314,13 +309,17 @@ console.log(filteredMovies)
 
   }, [searchTerm, isCheckboxChecked, filteredMovies, currentMovies, isSubmitted]);
 
+
+
   useEffect(() => {
     handleSearchSavedMovies()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSavedMoviesCheckboxChecked, savedMovies])
+
+  useEffect(() => {
     handleSearchCurrentMovies()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isCheckboxChecked, savedMovies])
-
-
+  }, [isCheckboxChecked, currentMovies])
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <SavedMoviesContext.Provider value={{ savedMovies }}>
@@ -376,7 +375,7 @@ console.log(filteredMovies)
                 isLoggedIn={isLoggedIn}
                 handleUpdateUser={handleUpdateUser}
                 onSignOut={handleSignOut}
-      
+
 
               />} isLoggedIn={isLoggedIn} />} />
 

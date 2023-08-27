@@ -29,6 +29,7 @@ function MoviesCardList({ movies,
     return () => {
       window.removeEventListener('resize', showInitialMovies);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [movies]);
   
   function loadMoreMovies() {  
