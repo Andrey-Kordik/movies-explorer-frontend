@@ -29,7 +29,7 @@ function Login ({ onLogin}) {
           </fieldset>
           <fieldset className="register__form-group">
             <label className="register__label" htmlFor="password">Пароль</label>
-            <input type="password" id="password" name="password" onChange={handleChange} value={values.password || ''} required  placeholder='Пароль' minLength="2" maxLength="12" className ="register__input"/>
+            <input type="password" id="password" name="password" onChange={handleChange} value={values.password || ''} required  placeholder='Пароль' minLength="6" maxLength="12" className ="register__input"/>
             {errors.password && <span className="register__error">{errors.password}</span>}
           </fieldset>
           <button className='register__button' type="submit" disabled={!isValid}>Войти</button>

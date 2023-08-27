@@ -3,9 +3,10 @@ import Header from '../Header/Header.js';
 import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js'
+import useFormWithValidation from '../../utils/FormValidation';
 
 function Profile({ isLoggedIn, handleUpdateUser, onSignOut}) {
-
+    const { values, handleChange, errors, isValid } = useFormWithValidation();
 
     const [isEditMode, setIsEditMode] = useState(false);
     const [name, setName] = useState("");
@@ -22,7 +23,7 @@ function Profile({ isLoggedIn, handleUpdateUser, onSignOut}) {
 
     const handleEditButtonClick = () => {
         if (isEditMode) {
-          handleUpdateUser({ name, email });
+            setIsEditMode(false);
         } else {
           setIsEditMode(true);
         }
@@ -40,6 +41,7 @@ function Profile({ isLoggedIn, handleUpdateUser, onSignOut}) {
         setName(currentUser.name);
         setEmail(currentUser.email);
     }, [currentUser]); 
+
 
     function handleSignOut() {
         onSignOut()
@@ -70,12 +72,13 @@ function Profile({ isLoggedIn, handleUpdateUser, onSignOut}) {
                                 <label className="profile__label">E-mail</label>
                                 <input
                                     name="email"
-                                    type="text"
+                                    type="email"
                                     className={isEditMode ? 'profile__input' : 'profile__input profile__input--readonly'}
                                     value={email || ""}
                                     readOnly={!isEditMode}
                                     onChange={handleInputChange}
                                 />
+                                  {errors.email && <span className="register__error">{errors.email}</span>}
                             </div>
                         </fieldset>
                         {isEditMode ? (

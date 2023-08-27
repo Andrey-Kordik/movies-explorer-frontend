@@ -34,7 +34,7 @@ function Register ({onRegister}) {
         </fieldset>
         <fieldset className="register__form-group">
           <label className="register__label" htmlFor="password">Пароль</label>
-          <input type="password" id="password" name="password" onChange={handleChange} value={values.password || ''} minLength="8" maxLength="15" required placeholder='Пароль'  className ="register__input"/>
+          <input type="password" id="password" name="password" onChange={handleChange} value={values.password || ''} minLength="6" maxLength="15" required placeholder='Пароль'  className ="register__input"/>
           {errors.password && <span className="register__error">{errors.password}</span>}
         </fieldset>
         <button className="register__button" type="submit" disabled={!isValid}>Зарегистрироваться</button>
