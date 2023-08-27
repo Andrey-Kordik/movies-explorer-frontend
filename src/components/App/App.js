@@ -198,7 +198,7 @@ function App() {
     mainApi.logout()
       .then(() => {
         clearUserInfo() 
-        navigate('/signin');
+        navigate('/');
       })
       .catch((err) => {
         console.log(err.message)

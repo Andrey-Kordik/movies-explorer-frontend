@@ -72,7 +72,7 @@ function Profile({ isLoggedIn, handleUpdateUser, onSignOut}) {
                                     onChange={handleChange}
                                 />
                             </div>
-
+                            {errors.email && <span className="profile__error">{errors.email}</span>}
                         </fieldset>
                        
                         {isEditMode ? (<>
