@@ -78,7 +78,7 @@
 
 .profile__input-container:last-child {
     border-bottom: none;
-    padding-top: 17px;
+    margin-top: 17px;
 
 }
 
@@ -165,7 +165,38 @@
     cursor: pointer;
 }
 
+.profile__save-button:disabled {
+    opacity: 0.5;
+    border: 1px solid #424242;
+    background: transparent;
+    cursor: not-allowed;
+}
+
+
+
 .profile__logout__link {
     text-decoration: none;
     color: #EE3465;
+}
+
+
+.profile__error {
+    color: #EE3465;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-top: 10px;
+}
+
+.profile__success {
+    color: #34ee3d;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 10px;
+    text-align: center;
 }

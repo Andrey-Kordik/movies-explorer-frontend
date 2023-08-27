@@ -14,6 +14,7 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { SavedMoviesContext } from '../contexts/SavedMoviesContext.js';
 import { useNavigate } from 'react-router-dom';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute.js';
+import InfoTooltip from '../InfoTooltip/InfoTooltip.js';
 
 function App() {
 
@@ -33,18 +34,34 @@ function App() {
   const [searchTermSavedMovies, setSearchTermSavedMovies] = useState('');
   const [isSavedMoviesCheckboxChecked, setIsSavedMoviesCheckboxChecked] = useState(false);
 
+  const [isSuccessfullSign, setIsSuccessfullSign] = useState(false);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
+
   const navigate = useNavigate()
   const location = useLocation();
 
   const isMoviesRoute = location.pathname === '/movies';
+  
+  
+  function handleInfoTooltipOpen() {
+    setIsInfoTooltipOpen(true);
+  }
+  function handleInfoTooltipClose() {
+
+    setIsInfoTooltipOpen(false)
+  }
 
   function handleUpdateUser(data) {
     mainApi.editUserData(data)
       .then((data) => {
+        setIsSuccessfullSign(true);
         setCurrentUser(data);
+        handleInfoTooltipOpen()
       })
       .catch(err => {
         console.log(err.message)
+        setIsSuccessfullSign(false)
+        handleInfoTooltipOpen()
       })
   }
 
@@ -405,6 +422,7 @@ function App() {
                 isLoggedIn={isLoggedIn}
                 handleUpdateUser={handleUpdateUser}
                 onSignOut={handleSignOut}
+      
 
               />} isLoggedIn={isLoggedIn} />} />
 
@@ -420,6 +438,15 @@ function App() {
             />} />
 
           </Routes>
+
+          <InfoTooltip
+            isOpen={isInfoTooltipOpen}
+            isSuccessfull={isSuccessfullSign}
+            onClose={handleInfoTooltipClose}
+          />
+
+
+
         </div>
       </SavedMoviesContext.Provider>
     </CurrentUserContext.Provider>

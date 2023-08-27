@@ -1,0 +1,95 @@
+.tooltip__container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    max-width: 430px;
+    width: 100%;
+    max-height: 330px;
+    height: 100%;
+    background-color: white;
+    align-self: center;
+    border-radius: 5%;
+    position: relative;
+}
+
+
+@media screen and (max-width: 400px) {
+    .tooltip__container {
+     max-width: 280px;
+     max-height: 308px;
+    }
+  }
+
+  .tooltip__image {
+    max-width: 120px;
+    max-height: 120px;
+}
+
+
+.tooltip__text {
+    font-family: 'Inter', Arial, sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+}
+
+
+@media screen and (max-width: 400px) {
+    .tooltip__text {
+        font-size: 20px;
+        line-height: 24px;
+    }
+}
+
+.popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+    transition: all 0.5s;
+}
+
+.popup_opened {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+    cursor: pointer;
+}
+
+.popup__closing-icon {
+    cursor: pointer;
+    transition: 0.4s;
+    background-image: url(../../images/Closetooltip_Icon.svg);
+    max-width: 32px;
+    max-height: 32px;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: 0;
+    top: -40px;
+    right: -40px;
+    position: absolute;
+    background-size: contain;
+}
+
+.popup__closing-icon:hover {
+    opacity: 0.5;
+}
+
+@media screen and (max-width: 600px) {
+    .popup__closing-icon {
+        max-width: 20px;
+        max-height: 20px;
+        top: -40px;
+        right: 0;
+    }
+}

@@ -1,6 +1,5 @@
 import './Register.css';
 import logo from '../../images/logo.svg'
-import React, { useState } from 'react'
 import { Link}  from 'react-router-dom';
 import useFormWithValidation from '../../utils/FormValidation';
 
