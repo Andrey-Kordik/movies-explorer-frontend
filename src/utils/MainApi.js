@@ -15,7 +15,6 @@ class MainApi {
           })
   }
 
-
   editUserData({ name, email }) {
     return fetch(`${this.url}/users/me`, {
         method: "PATCH",
@@ -44,8 +43,6 @@ class MainApi {
           })
       }
 
-      
-
       logout () {
         return fetch(`${this.url}/signout`, {
           method: 'GET',
@@ -56,9 +53,7 @@ class MainApi {
           return this._checkResult(res)
         })
       };
-
-
-      
+  
   authorize(email, password) {
     return fetch(`${this.url}/signin`, {
       method: 'POST',
@@ -73,8 +68,6 @@ class MainApi {
         return this._checkResult(res)
       })
   }
-
-
 
   checkToken() {
     return fetch(`${this.url}/users/me`, {
@@ -106,7 +99,6 @@ class MainApi {
     })
   }
 
-
   addMovies(data) {
   return fetch (`${this.url}/movies`, {
       method: 'POST',
@@ -118,7 +110,6 @@ class MainApi {
       return this._checkResult(res)
     })
   }
-
 
   deleteMovies(id) {
     return fetch (`${this.url}/movies/${id}`, {
@@ -133,7 +124,7 @@ class MainApi {
 }
 
 export const mainApi = new MainApi({
-    url: 'https://api.domain.kordik.diploma.nomoredomains.xyz',
+    url: 'http://localhost:4000',
     headers: {
         'Content-Type': 'application/json'
     }
