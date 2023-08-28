@@ -37,9 +37,9 @@ function MoviesCardList({ movies,
   function loadMoreMovies() {  
     if (window.innerWidth < 350) {  
       setInitialCards(initialCards + 2);  
-    } else if (window.innerWidth >= 350 && window.innerWidth <= 768) {  
+    } else if (window.innerWidth >= 350 && window.innerWidth <= 1156) {  
       setInitialCards(initialCards + 2);  
-    } else if (window.innerWidth > 768) {  
+    } else if (window.innerWidth > 1156) {  
       setInitialCards(initialCards + 3);  
     }  
   }  

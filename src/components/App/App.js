@@ -187,11 +187,10 @@ function App() {
       name: '',
       email: '',
     });
-    setSavedMovies([])
+    setFilteredMovies([])
     setIsSubmitted(false);
     setSearchTerm('');
     setIsCheckboxChecked(false);
-    localStorage.clear();
   }
 
   function handleSignOut() {
