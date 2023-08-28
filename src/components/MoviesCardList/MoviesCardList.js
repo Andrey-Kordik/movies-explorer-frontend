@@ -1,91 +1,90 @@
 import './MoviesCardList.css';
 import MovieCard from '../MoviesCard/MovieCard';
-import FilmOne from '../../images/1.png'
-import FilmTwo from '../../images/2.png'
-import FilmThree from '../../images/3.png'
-import FilmFour from '../../images/4.png'
-import FilmFive from '../../images/5.png'
-import FilmSix from '../../images/6.png'
-import FilmSeven from '../../images/7.png'
-import FilmEight from '../../images/8.png'
-import FilmNine from '../../images/9.png'
-import FilmTen from '../../images/10.png'
-import FilmEleven from '../../images/11.png'
-import FilmTwelve from '../../images/12.png'
+import { useState, useEffect } from 'react';
 
-function MoviesCardList() {
-
-  return (
-
-    <section className="movies__list">
-      <div className='movies__container'>
-      <MovieCard
-        image={FilmOne}
-        name="33 слова о дизайне"
-        duration="1ч 17м"
-        
-      />
-      <MovieCard
-        image={FilmTwo}
-        name="Киноальманах «100 лет дизайна»"
-        duration="1ч 17м"
-      />
-      <MovieCard
-        image={FilmThree}
-        name="В погоне за Бенкси"
-        duration="1ч 17м"
-      />
-      <MovieCard
-        image={FilmFour}
-        name="Баския: Взрыв реальности"
-        duration="1ч 17м"
-      />
-
-      <MovieCard
-        image={FilmFive}
-        name="Бег это свобода"
-        duration="1ч 17м"
-      />
-      <MovieCard
-        image={FilmSix}
-        name="Книготорговцы"
-        duration="1ч 17м"
-      />
-      <MovieCard
-        image={FilmSeven}
-        name="Когда я думаю о Германии ночью"
-        duration="1ч 17м"
-      />
-      <MovieCard
-        image={FilmEight}
-        name="Gimme Danger: История Игги и The Stooges"
-        duration="1ч 17м"
-      />
-      <MovieCard
-        image={FilmNine}
-        name="Дженис: Маленькая девочка грустит"
-        duration="1ч 17м"
-      />
-      <MovieCard
-        image={FilmTen}
-        name="Соберись перед прыжком"
-        duration="1ч 17м"
-      />
-      <MovieCard
-        image={FilmEleven}
-        name="Пи Джей Харви: A dog called money"
-        duration="1ч 17м"
-      />
-      <MovieCard
-        image={FilmTwelve}
-        name="По волнам: Искусство звука в кино"
-        duration="1ч 17м"
-      />
-
-</div>
-<button className='movies__more-button'>Ещё</button>
-    </section>
-  );
-}
-
-export default MoviesCardList
+function MoviesCardList({ movies,  
+  onAddMovie,  
+  onDeleteMovie,  
+  isSubmitted,  
+  isMoviesRoute }) {  
+  
+  const [showButton, setShowButton] = useState(false);  
+  const [initialCards, setInitialCards] = useState(0);  
+  const movieCards = movies.slice(0, initialCards);  
+  
+  function showInitialMovies() {  
+    if (window.innerWidth < 350) {  
+      setInitialCards(5);  
+    } else if (window.innerWidth >= 350 && window.innerWidth <= 768) {  
+      setInitialCards(8);  
+    } else if (window.innerWidth > 768) {  
+      setInitialCards(12);  
+    }  
+    setShowButton(movies.length > initialCards);  
+  }  
+  
+  useEffect(() => {
+    setTimeout(() => {
+    showInitialMovies();
+  }, 300);
+    window.addEventListener('resize', showInitialMovies);
+    return () => {
+      window.removeEventListener('resize', showInitialMovies);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [movies]);
+  
+  function loadMoreMovies() {  
+    if (window.innerWidth < 350) {  
+      setInitialCards(initialCards + 2);  
+    } else if (window.innerWidth >= 350 && window.innerWidth <= 1156) {  
+      setInitialCards(initialCards + 2);  
+    } else if (window.innerWidth > 1156) {  
+      setInitialCards(initialCards + 3);  
+    }  
+  }  
+  
+  function hideButton() {  
+    return movieCards.length === movies.length;  
+  }  
+  
+  return (  
+    <section className="movies__list">  
+      <div className="movies__container">  
+        {movies.length > 0 ? (  
+          isMoviesRoute ? (  
+            isSubmitted &&  
+            movieCards.map((movie) => (  
+              <MovieCard  
+                key={movie.nameRU}  
+                movie={movie}  
+                onAddMovie={onAddMovie}  
+                onDeleteMovie={onDeleteMovie}  
+              />  
+            ))  
+          ) : (  
+            movies.map((movie) => (  
+              <MovieCard  
+                key={movie.nameRU}  
+                movie={movie}  
+                onAddMovie={onAddMovie}  
+                onDeleteMovie={onDeleteMovie}  
+              />  
+            ))  
+          )  
+        ) : (  
+          (isSubmitted && movies.length === 0) || (!isMoviesRoute && movies.length === 0) ? (  
+            <p className="movies__not-found">Ничего не найдено</p>  
+          ) : null  
+        )}  
+      </div>  
+      {showButton && !hideButton() && (  
+        <button className="movies__more-button" onClick={loadMoreMovies}>  
+          Ещё  
+        </button>  
+      )}  
+    </section>  
+  );  
+}  
+  
+export default MoviesCardList;

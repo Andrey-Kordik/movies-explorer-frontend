@@ -21,13 +21,15 @@
 .movie__image {
     max-width: 360px;
     width: 100%;
-    min-height: 201px;
+    max-height: 201px;
+    height: 100%;
+
 }
 
 @media screen and (max-width: 768px) {
     .movie__image  {
         max-width: 339px;
-        min-height: 190px;
+        max-height: 190px;
     }
 }
 
@@ -35,7 +37,7 @@
 @media screen and (max-width: 350px) {
     .movie__image  {
         max-width: 300px;
-        min-height: 168px;
+        max-height: 168px;
     }
 }
 
@@ -102,11 +104,10 @@
     border: none;
     min-height: 21px;
     position: absolute;
+    opacity:0.6;
     top: 14px;
     right: 14px;
     cursor: pointer;
-    opacity: 0;
-    visibility: hidden; 
     transition: all 0.5s;
 }
 
@@ -115,8 +116,7 @@
 }
 
 .movie:hover .movie__savebutton {
-    opacity: 1;
-    visibility: visible;
+    opacity:  1;
 }
 
 
@@ -124,8 +124,7 @@
     position: absolute;
     top: 14px;
     right: 14px;
-    opacity: 0;
-    visibility: hidden; 
+    opacity: 0.6;
     transition: all 0.5s;
 }
 
@@ -138,14 +137,12 @@
     position: absolute;
     top: 14px;
     right: 14px;
-    opacity: 0;
-    visibility: hidden; 
+    opacity: 0.6;
     transition: all 0.5s;
 }
 
 .movie:hover .movie__delete-icon {
     opacity: 1;
-    visibility: visible;
 }
 
 .movie__saved-icon:hover {

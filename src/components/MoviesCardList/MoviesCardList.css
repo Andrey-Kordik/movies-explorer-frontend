@@ -75,3 +75,11 @@
         max-width: 240px;
     }
 }
+
+.movies__not-found {
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: #FFF;
+    text-align: center;
+}

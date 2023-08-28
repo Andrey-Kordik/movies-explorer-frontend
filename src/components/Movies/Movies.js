@@ -2,10 +2,33 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Header from '../Header/Header.js';
 import Footer from '../Footer/Footer';
+import Preloader from '../Preloader/Preloader';
 
-function Movies({ isLoggedIn,isCheckboxChecked, onCheckboxChange }) {
- 
+
+function Movies({
+    isLoading,
+    isLoggedIn,
+    isCheckboxChecked,
+    onCheckboxChange,
+    onSubmit,
+    filteredMovies,
+    isSubmitted,
+    onAddMovie,
+    onIsSubmitted,
+    onDeleteMovie,
+    setIsLoading,
+    onChange,
+    searchTerm,
+    isMoviesRoute,
+    showButton,
+    hideButton,
+    loadMoreMovies,
+    movieCards,
+    
+}) {
+
     return (
+
         <>
             <Header
                 isLoggedIn={isLoggedIn}
@@ -14,9 +37,26 @@ function Movies({ isLoggedIn,isCheckboxChecked, onCheckboxChange }) {
                 <SearchForm
                     isCheckboxChecked={isCheckboxChecked}
                     onCheckboxChange={onCheckboxChange}
+                    onSubmit={onSubmit}
+                    onIsSubmitted={onIsSubmitted}
+                    setIsLoading={setIsLoading}
+                    onChange = {onChange}
+                    searchTerm = {searchTerm}
                 />
-                <MoviesCardList
-                />
+                {isLoading ? (
+                    <Preloader />
+                ) : (
+                    <MoviesCardList movies={isSubmitted ? filteredMovies : []}
+                        onAddMovie={onAddMovie}
+                        isSubmitted={isSubmitted}
+                        onDeleteMovie={onDeleteMovie}
+                        isMoviesRoute = {isMoviesRoute}
+                        showButton = {showButton}
+                        hideButton={hideButton}
+                        loadMoreMovies={loadMoreMovies}
+                        movieCards = {movieCards}
+                    />
+                )}
             </main>
             <Footer />
         </>
