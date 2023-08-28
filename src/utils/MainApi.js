@@ -15,6 +15,7 @@ class MainApi {
           })
   }
 
+
   editUserData({ name, email }) {
     return fetch(`${this.url}/users/me`, {
         method: "PATCH",
@@ -124,7 +125,7 @@ class MainApi {
 }
 
 export const mainApi = new MainApi({
-    url: 'http://localhost:4000',
+    url: 'https://api.domain.kordik.diploma.nomoredomains.xyz',
     headers: {
         'Content-Type': 'application/json'
     }
